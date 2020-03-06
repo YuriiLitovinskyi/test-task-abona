@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous">
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
     <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
         crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/19.2.6/js/dx.all.js"></script>
+    <!-- DevExtreme themes -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.common.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.light.css">
     <title>Test Task</title>
 </head>
 <body>
@@ -39,13 +41,15 @@
                     </form>
 
             </div>
-
         </div>
 
+      
+        <div id="gridContainer"></div>
+        <div id="gridContainer2"></div>
 
-           
-
-            <button type="button" class="btn btn-primary" id="get_data">Display data</button>         
+            <!-- <button type="button" class="btn btn-primary" id="get_data">Display data</button>   -->
+            
+        <div id="transportList"></div>
         
 
     </div>
