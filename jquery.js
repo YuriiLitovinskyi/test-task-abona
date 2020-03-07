@@ -2,26 +2,33 @@ $(document).ready(function() {
 
     // GET all transport units
     $.get('https://yardwebapiexp.azurewebsites.net/api/CargoUnits/GetCargoUnitsInYard', function(data) {
-    //debugger
-    console.log(data);
-    $.each(data, function(i,item){
-            content = `<p>${item.RegistrationPlate},  ${item.TransportNumber},  ${item.TransportCompanyName} </p>`;          
-            $(content).appendTo("#transportList");
-            const date = new Date(item.Arrival);
-            console.log(date)
-        });
+    //debugger    
+    data.forEach(item => item.Arrival = new Date(item.Arrival));
+    //console.log(data);
        
         $('#gridContainer').dxDataGrid({
             dataSource: data,
+            showRowLines: true,           
+            rowAlternationEnabled: true,            
+            showBorders: true,
             columns: [
-                'OID',
+                 {
+                    dataField: "OID",
+                    caption: "OID",
+                    width: 60
+                },
                 'Arrival',
                 'TransportNumber',
                 'TransportCompanyName',
-                'RegistrationPlate'
+                'RegistrationPlate',
+                'IsDocked',
+                'IsLeftYard',
+                'IsContainer',
+                'IsTractorRequested',
+                'IsTractorServicing'               
             ],
             paging: {
-                pageSize: 6
+                pageSize: 4
             },
             sorting: {
                 mode: "multiple"
@@ -38,28 +45,24 @@ $(document).ready(function() {
                 visible: true
             },
             editing: {
-                editMode: "batch",
-                editEnabled: true,
-                removeEnabled: true,
-                insertEnabled: true
-            }
-        });
-        
-    });    
+                allowUpdating: true, 
+                allowAdding: true, 
+                allowDeleting: true,
+                mode: 'row' // 'batch' | 'cell' | 'form' | 'popup'
+            },
+            columnHidingEnabled: true,
+            columnChooser: {
+                enabled: true,
+                mode: "select"
+            },
+            grouping: {
+                contextMenuEnabled: true,
+                expandMode: "rowClick"
+            }            
+        });        
+    });  
   });
 
-
-// // GET all transport units
-// $('#get_data').click(function() {
-//     $.get('https://yardwebapiexp.azurewebsites.net/api/CargoUnits/GetCargoUnitsInYard', function(data) {
-//     //debugger
-//     console.log(data);
-//     $.each(data, function(i,item){
-//             content = `<p>${item.RegistrationPlate},  ${item.TransportNumber},  ${item.TransportCompanyName} </p>`;          
-//             $(content).appendTo("#transportList");
-//         });
-//     });
-// });
 
 // POST transport unit
 $('form').submit(function(e) {
@@ -67,15 +70,26 @@ $('form').submit(function(e) {
     let registrationPlate = $("#registrationPlate").val();
     let transportNumber = $("#transportNumber").val();
     let transportCompany = $("#transportCompany").val();
-    console.log(registrationPlate);
-    console.log(transportNumber);
-    console.log(transportCompany);
+    // console.log(registrationPlate);
+    // console.log(transportNumber);
+    // console.log(transportCompany);
    
-    $.post(`https://yardwebapiexp.azurewebsites.net/api/CargoUnits/RegisterContainerCargoUnit/${registrationPlate}/${transportNumber}/${transportCompany}`, {}, function(data){
-        console.log(data);
+    let url = `https://yardwebapiexp.azurewebsites.net/api/CargoUnits/RegisterContainerCargoUnit/${registrationPlate}/${transportNumber}/${transportCompany}`;
+    $.post(url, {}, function(data){
+        data.Arrival = new Date(data.Arrival);
+        //console.log(data);
+
+        let dataGrid = $("#gridContainer").dxDataGrid({
+            // ...
+        }).dxDataGrid("instance");
+        let dataSource = dataGrid.getDataSource();
+        dataSource.store().insert(data).then(function() {
+            dataSource.reload();
+        });
+
         $('form').each(function(){
             this.reset();
-        });
-        $('#transportList').append(`<p>${data.RegistrationPlate},  ${data.TransportNumber},  ${data.TransportCompanyName} </p>`)
+        });        
     });
 });
+

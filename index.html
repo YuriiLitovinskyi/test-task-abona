@@ -1,62 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
-    <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <!-- DevExtreme library -->
-    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/19.2.6/js/dx.all.js"></script>
-    <!-- DevExtreme themes -->
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.common.css">
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.light.css">
-    <title>Test Task</title>
-</head>
-<body>
-    <div class="container">
-        <div class="text-center">
-            <h2>Register Form</h2>
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col col-lg-6">
-                <form>
-                    <div class="form-group">
-                        <label for="registrationPlate">Registration Plate</label>
-                        <input type="text" class="form-control" id="registrationPlate" required>                
-                    </div>
-                    <div class="form-group">
-                        <label for="transportNumber">Transport Number</label>
-                        <input type="text" class="form-control" id="transportNumber" required>
-                    </div>  
-                    <div class="form-group">
-                        <label for="transportCompany">Transport Company</label>
-                        <input type="text" class="form-control" id="transportCompany" required>
-                    </div>           
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        <script 
+            type="text/javascript" 
+            src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js">
+        </script>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <!-- DevExtreme library -->
+        <script 
+            type="text/javascript" 
+            src="https://cdn3.devexpress.com/jslib/19.2.6/js/dx.all.js">
+        </script>
+        <!-- DevExtreme themes -->
+        <link 
+            rel="stylesheet" 
+            href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.common.css">
+        <link 
+            rel="stylesheet" 
+            href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.darkmoon.css">
+        <title>Test Task</title>
+    </head>
+    <body class="bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h3 class="text-secondary">Register New Transport Unit</h3>
             </div>
-        </div>
-
-      
-        <div id="gridContainer"></div>
-        <div id="gridContainer2"></div>
-
-            <!-- <button type="button" class="btn btn-primary" id="get_data">Display data</button>   -->
-            
-        <div id="transportList"></div>
-        
-
-    </div>
-
-    
-    
-
-    <script src="jquery.js"></script>
-</body>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    <form class="bg-secondary">
+                        <div class="form-group">
+                            <label 
+                                for="registrationPlate" 
+                                class="text-white">
+                                Registration Plate
+                            </label>
+                            <input 
+                                type="text" 
+                                class="form-control form-control-sm" 
+                                id="registrationPlate" 
+                                required 
+                                placeholder="000-000" 
+                                maxlength="10">                
+                        </div>
+                        <div class="form-group">
+                            <label 
+                                for="transportNumber" 
+                                class="text-white">
+                                Transport Number
+                            </label>
+                            <input 
+                                class="form-control form-control-sm" 
+                                id="transportNumber" 
+                                required 
+                                placeholder="00000" 
+                                type="number" 
+                                min="0" 
+                                max="99999">
+                        </div>  
+                        <div class="form-group">
+                            <label 
+                                for="transportCompany" 
+                                class="text-white">
+                                Transport Company
+                            </label>
+                            <input 
+                                type="text" 
+                                class="form-control form-control-sm" 
+                                id="transportCompany" 
+                                required 
+                                placeholder="Company Name" 
+                                maxlength="20">
+                        </div>           
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>      
+            <hr />
+            <div class="text-center">
+                <h3 class="text-secondary">Registered Transport Units</h3>
+            </div>
+            <div class="col col-sm-12 col-lg-12">
+                <div id="gridContainer"></div>
+            </div>                         
+        </div> 
+        <script src="jquery.js"></script>
+    </body>
 </html>
