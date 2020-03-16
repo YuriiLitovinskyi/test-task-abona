@@ -4,7 +4,7 @@ $(document).ready(function() {
     $.get('https://yardwebapiexp.azurewebsites.net/api/CargoUnits/GetCargoUnitsInYard', function(data) {
     //debugger    
     data.forEach(item => item.Arrival = new Date(item.Arrival));
-    //console.log(data);
+    console.log(data);
        
         $('#gridContainer').dxDataGrid({
             dataSource: data,
@@ -20,12 +20,9 @@ $(document).ready(function() {
                 'Arrival',
                 'TransportNumber',
                 'TransportCompanyName',
-                'RegistrationPlate',
-                'IsDocked',
-                'IsLeftYard',
-                'IsContainer',
-                'IsTractorRequested',
-                'IsTractorServicing'               
+                'RegistrationPlate',                           
+                'CargoUnitStatus',
+                'IsLeftYard'                            
             ],
             paging: {
                 pageSize: 4

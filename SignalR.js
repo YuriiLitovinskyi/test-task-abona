@@ -6,6 +6,9 @@ hub.logging = true;
 var HubProxy = hub.createHubProxy('yardHub');
 HubProxy.on('BCMAck', function(operationArguments, token, seq) {
     console.log(operationArguments, token, seq);
+    console.log(operationArguments);
+    console.log(token);
+    console.log(seq);
 });
 
 hub.start()
